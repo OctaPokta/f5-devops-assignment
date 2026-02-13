@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  nginx_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+
+  test_runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      - nginx_server
