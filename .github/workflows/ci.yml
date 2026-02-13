@@ -1,0 +1,38 @@
+name: DevOps Intern CI
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - [cite_start]name: Build and Run Docker Compose [cite: 31, 32]
+        run: docker compose up --build --abort-on-container-exit
+        continue-on-error: true # Allow us to process failure steps below
+
+      # Check result and create success artifact [cite: 34]
+      - name: Handle Success
+        if: success()
+        run: echo "Tests passed!" > succeeded.txt
+        
+      - name: Upload Success Artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: succeeded
+          path: succeeded.txt
+
+      # Check result and create failure artifact [cite: 35]
+      - name: Handle Failure
+        if: failure()
+        run: echo "Tests failed." > fail.txt
+
+      - name: Upload Failure Artifact
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fail
+          path: fail.txt
