@@ -3,34 +3,33 @@ import requests
 import time
 
 def run_tests():
-    # Wait a moment for Nginx to start up
-    time.sleep(2)
+    print("Waiting for Nginx to start...")
+    time.sleep(3)
     
-    # We use the hostname 'nginx_server' which we will define in Docker Compose later
     url_ok = "http://nginx_server:8080"
     url_error = "http://nginx_server:8081"
     
     try:
         # Test 1: Expecting 200 OK
         print(f"Testing {url_ok}...")
-        response = requests.get(url_ok)
-        if response.status_code == 200:
+        resp = requests.get(url_ok)
+        if resp.status_code == 200:
             print("SUCCESS: Got 200 OK")
         else:
-            print(f"FAIL: Expected 200, got {response.status_code}")
-            sys.exit(1) # Exit with non-zero code on failure [cite: 22]
-
-        # Test 2: Expecting 500 Error [cite: 16]
-        print(f"Testing {url_error}...")
-        response = requests.get(url_error)
-        if response.status_code == 500:
-             print("SUCCESS: Got 500 Error as expected")
-        else:
-            print(f"FAIL: Expected 500, got {response.status_code}")
+            print(f"FAIL: Expected 200, got {resp.status_code}")
             sys.exit(1)
 
-    except requests.exceptions.RequestException as e:
-        print(f"CRITICAL FAIL: Could not connect to server. {e}")
+        # Test 2: Expecting 500 Error
+        print(f"Testing {url_error}...")
+        resp = requests.get(url_error)
+        if resp.status_code == 500:
+             print("SUCCESS: Got 500 Error")
+        else:
+            print(f"FAIL: Expected 500, got {resp.status_code}")
+            sys.exit(1)
+
+    except Exception as e:
+        print(f"CRITICAL FAIL: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
