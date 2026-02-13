@@ -43,3 +43,4 @@ This repository contains the solution for the F5 DevOps Intern Home Assignment. 
 ### 3. CI/CD Pipeline
 * The GitHub Actions workflow leverages the same Docker Compose command used locally.
 * **Artifacts:** The pipeline uploads a `succeeded.txt` or `fail.txt` file depending on the test outcome, allowing for easy verification of build status without digging into logs.
+
