@@ -1,6 +1,7 @@
 # Package the server blocks inside ubuntu linux container
+# (as required)
 
-FROM ubuntu:latest # (as required)
+FROM ubuntu:latest
 
 # Install Nginx
 RUN apt-get update && apt-get install -y nginx
