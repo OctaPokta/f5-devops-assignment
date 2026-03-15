@@ -1,3 +1,5 @@
+# Package the server blocks inside ubuntu linux container
+
 FROM ubuntu:latest
 
 # Install Nginx
