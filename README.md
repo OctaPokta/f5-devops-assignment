@@ -10,28 +10,7 @@ This repository contains the solution for the F5 DevOps Intern Home Assignment. 
 * **Dockerfile.test**: Builds the Python environment for the test script.
 * **docker-compose.yml**: Orchestrates the build and execution of both services.
 * **.github/workflows/ci.yml**: CI pipeline that builds, tests, and publishes artifacts.
-
-## How to Run Locally
-
-**Prerequisites:** Docker and Docker Compose.
-
-1.  Clone the repository:
-    ```bash
-    git clone [https://github.com/YOUR_GITHUB_USERNAME/f5-devops-assignment.git](https://github.com/YOUR_GITHUB_USERNAME/f5-devops-assignment.git)
-    cd f5-devops-assignment
-    ```
-
-2.  Run the environment:
-    ```bash
-    docker-compose up --build --abort-on-container-exit
-    ```
-    Note: This ensures that the nginx server won't run forever in the background.
-    
-4.  **Expected Output:**
-    * The Nginx container starts.
-    * The Test Runner waits for Nginx, then sends HTTP requests.
-    * If successful, you will see `test_runner exited with code 0`.
-
+ 
 ## Design Decisions & Trade-offs
 
 ### 1. Choice of Base Images
