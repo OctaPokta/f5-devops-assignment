@@ -1,4 +1,7 @@
+# an orchestrator for the containers
+
 services:
+  # first, run nginx server
   nginx_server:
     build:
       context: .
@@ -7,6 +10,7 @@ services:
       - "8080:8080"
       - "8081:8081"
 
+  # secondly, run test runner
   test_runner:
     build:
       context: .
