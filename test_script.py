@@ -1,3 +1,5 @@
+# test script in python 
+
 import sys
 import requests
 import time
@@ -6,9 +8,10 @@ def run_tests():
     print("Waiting for Nginx to start...")
     time.sleep(3)
     
-    url_ok = "http://nginx_server:8080"
+    url_ok = "http://nginx_server:8080" 
     url_error = "http://nginx_server:8081"
-    
+
+    # verifying expected behavior for each Nginx server 
     try:
         # Test 1: Expecting 200 OK
         print(f"Testing {url_ok}...")

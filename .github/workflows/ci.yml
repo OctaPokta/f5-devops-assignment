@@ -1,3 +1,7 @@
+# cloud automation pipeline for github action
+# every time we push a code to github, github rents temp server, downloads the code, and runs 'docker-compose.yml'.
+# if succeeded, Github saves succeeded.txt file to prove it passed.
+
 name: DevOps Intern CI
 
 on: [push]
@@ -13,6 +17,7 @@ jobs:
         run: docker compose up --build --abort-on-container-exit
         continue-on-error: true
 
+      # handle success
       - name: Handle Success
         if: success()
         run: echo "Tests passed!" > succeeded.txt
@@ -24,6 +29,7 @@ jobs:
           name: succeeded
           path: succeeded.txt
 
+      # handle faliure
       - name: Handle Failure
         if: failure()
         run: echo "Tests failed." > fail.txt
