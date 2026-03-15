@@ -1,7 +1,7 @@
 # an orchestrator for the containers
 
 services:
-  # first, run nginx server
+  # first, build the nginx server
   nginx_server:
     build:
       context: .
