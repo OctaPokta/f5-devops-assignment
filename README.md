@@ -25,8 +25,9 @@ This repository contains the solution for the F5 DevOps Intern Home Assignment. 
     ```bash
     docker-compose up --build --abort-on-container-exit
     ```
-
-3.  **Expected Output:**
+    Note: This ensures that the nginx server won't run forever in the background.
+    
+4.  **Expected Output:**
     * The Nginx container starts.
     * The Test Runner waits for Nginx, then sends HTTP requests.
     * If successful, you will see `test_runner exited with code 0`.
